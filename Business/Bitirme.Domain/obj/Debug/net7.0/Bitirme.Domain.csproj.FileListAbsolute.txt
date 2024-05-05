@@ -1,0 +1,14 @@
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.csproj.AssemblyReference.cache
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.AssemblyInfoInputs.cache
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.AssemblyInfo.cs
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.csproj.CoreCompileInputs.cache
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\bin\Debug\net7.0\Bitirme.Domain.deps.json
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\bin\Debug\net7.0\Bitirme.Domain.runtimeconfig.json
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\bin\Debug\net7.0\Bitirme.Domain.dll
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\bin\Debug\net7.0\Bitirme.Domain.pdb
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.dll
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\refint\Bitirme.Domain.dll
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.pdb
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\Bitirme.Domain.genruntimeconfig.cache
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Domain\obj\Debug\net7.0\ref\Bitirme.Domain.dll

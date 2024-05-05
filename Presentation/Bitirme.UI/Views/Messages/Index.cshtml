@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form id="group-message-form">
+    <input type="hidden" id="group-id" value="" />
+    <input type="text" id="group-message-input" placeholder="Grup mesajı yazın..." />
+    <button type="submit">Gönder</button>
+</form>
+
+
+<form id="personal-message-form">
+    <input type="hidden" id="receiver-user-id" value="" />
+    <input type="text" id="personal-message-input" placeholder="Kişisel mesaj yazın..." />
+    <button type="submit">Gönder</button>
+</form>
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/chatHub")
+        .configureLogging(signalR.LogLevel.Information)
+        .build();
+
+    connection.start().then(function () {
+        console.log("SignalR Connected!");
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    
+    $('#group-message-form').on('submit', function (e) {
+        e.preventDefault();
+        const groupId = $('#group-id').val();
+        const messageContent = $('#group-message-input').val();
+        connection.invoke('SendMessageToGroup', groupId, messageContent);
+    });
+
+    
+    $('#personal-message-form').on('submit', function (e) {
+        e.preventDefault();
+        const receiverUserId = $('#receiver-user-id').val();
+        const messageContent = $('#personal-message-input').val();
+        connection.invoke('SendPersonalMessage', receiverUserId, messageContent);
+    });
+
+
+    connection.on('ReceiveGroupMessage', function (messageContent) {
+        
+    });
+
+    
+    connection.on('ReceivePersonalMessage', function (messageContent) {
+        
+    });
+</script>
+

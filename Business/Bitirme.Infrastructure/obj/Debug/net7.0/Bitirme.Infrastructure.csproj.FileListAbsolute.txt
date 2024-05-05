@@ -1,0 +1,15 @@
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.AssemblyInfo.cs
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\bin\Debug\net7.0\Bitirme.Infrastructure.deps.json
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\bin\Debug\net7.0\Bitirme.Infrastructure.dll
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\bin\Debug\net7.0\Bitirme.Infrastructure.pdb
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\bin\Debug\net7.0\Bitirme.Domain.dll
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\bin\Debug\net7.0\Bitirme.Domain.pdb
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.csproj.CopyComplete
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.dll
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\refint\Bitirme.Infrastructure.dll
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\Bitirme.Infrastructure.pdb
+C:\Users\azatc\source\repos\BitirmeProjesii\Business\Bitirme.Infrastructure\obj\Debug\net7.0\ref\Bitirme.Infrastructure.dll
