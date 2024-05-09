@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Gruplar</h3>
+            <ul id="groupList" class="list-group"></ul>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Grup Mesajları</h3>
+                    <ul id="messagesList" class="list-group" style="height: 300px; overflow-y: auto;"></ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Mesaj Gönder</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <label for="messageContent">Mesaj İçeriği:</label>
+                            <input type="text" class="form-control" id="messageContent" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gönder</button>
+                        <input type="hidden" id="selectedGroupId" required>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.min.js"></script>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script>
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+    var selectedGroupId = null;
+    var currentUser = '';
+
+    connection.on("ReceiveGroupMessage", function (messageContent) {
+        appendMessage(messageContent, false);
+    });
+
+    connection.start().then(function () {
+        console.log("Hub'a bağlanıldı.");
+        fetchGroupList();
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
+    $(document).on('click', '#groupList li', function () {
+        $('#groupList li').removeClass('selected');
+        $(this).addClass('selected');
+        selectedGroupId = $(this).attr('data-groupid');
+        $('#selectedGroupId').val(selectedGroupId);
+
+        fetchMessageHistory(selectedGroupId);
+    });
+
+    function fetchGroupList() {
+        $.ajax({
+            url: '/Group/GetUserGroups',
+            type: 'GET',
+            success: function (data) {
+                data.forEach(function (group) {
+                    $('#groupList').append('<li class="list-group-item" data-groupid="' + group.id + '">' + group.name + '</li>');
+                });
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function fetchMessageHistory(selectedGroupId) {
+        var currentUser = ''; 
+
+        $.ajax({
+            url: '/Group/GetGroupMessages',
+            type: 'GET',
+            data: {
+                groupId: selectedGroupId
+            },
+            success: function (messages) {
+                messages.forEach(function (message) {
+                    appendMessage(message.messageContent, message.senderUserId); 
+                });
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function appendMessage(messageContent, senderUserId) {
+        var div = document.createElement("div");
+        var li = document.createElement("li");
+        li.textContent = messageContent;
+        li.className = "list-group-item";
+
+        if (senderUserId === currentUser) {
+            div.className = "message sent";
+            li.style.textAlign = "right";
+        } else {
+            div.className = "message received";
+            li.style.textAlign = "left";
+        }
+
+        div.appendChild(li);
+        $('#messagesList').append(div);
+        $('#messagesList').scrollTop($('#messagesList')[0].scrollHeight);
+    }
+
+    $('#messageForm').submit(function (e) {
+        e.preventDefault();
+        if (!selectedGroupId) {
+            alert("Lütfen bir grup seçin!");
+            return;
+        }
+        var messageContent = $('#messageContent').val();
+
+        connection.invoke("SendMessageToGroup", selectedGroupId, messageContent).catch(function (err) {
+            return console.error(err.toString());
+        });
+        appendMessage(messageContent, currentUser);
+        $('#messageContent').val('');
+    });
+</script>

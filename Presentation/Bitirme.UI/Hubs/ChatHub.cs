@@ -2,6 +2,7 @@
 using Bitirme.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using System.Text.RegularExpressions;
 
 namespace Bitirme.UI.Hubs
 {
@@ -65,7 +66,11 @@ namespace Bitirme.UI.Hubs
                     _context.GroupMessages.Add(message);
                     await _context.SaveChangesAsync();
 
-                    await Clients.Group(groupId.ToString()).SendAsync("ReceiveGroupMessage", messageContent);
+ 
+                    var groupMembers = _context.GroupMembers.Where(gm => gm.GroupID == groupId).Select(gm => gm.UserID).ToList();
+                    var groupMemberIds = groupMembers.Where(id => id != userId).Select(id => id.ToString()).ToList();
+                    await Clients.Users(groupMemberIds).SendAsync("ReceiveGroupMessage", messageContent);
+
                 }
             }
         }

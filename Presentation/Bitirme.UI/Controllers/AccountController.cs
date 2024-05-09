@@ -81,5 +81,18 @@ namespace Bitirme.UI.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction("Index","Home");
         }
+
+        [HttpGet]
+        public IActionResult Loginjson()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
     }
 }

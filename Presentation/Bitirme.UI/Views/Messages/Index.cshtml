@@ -4,59 +4,157 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<form id="group-message-form">
-    <input type="hidden" id="group-id" value="" />
-    <input type="text" id="group-message-input" placeholder="Grup mesajı yazın..." />
-    <button type="submit">Gönder</button>
-</form>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Kullanıcılar</h3>
+            <ul id="userList" class="list-group"></ul>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Mesajlar</h3>
+                    <ul id="messagesList" class="list-group" style="height: 300px; overflow-y: auto;"></ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Mesaj Gönder</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <label for="receiverUserName">Alıcı:</label>
+                            <input type="text" class="form-control" id="receiverUserName" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="messageContent">Mesaj İçeriği:</label>
+                            <input type="text" class="form-control" id="messageContent" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Gönder</button>
+                        <input type="hidden" id="receiverUserId" required readonly>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<form id="personal-message-form">
-    <input type="hidden" id="receiver-user-id" value="" />
-    <input type="text" id="personal-message-input" placeholder="Kişisel mesaj yazın..." />
-    <button type="submit">Gönder</button>
-</form>
-
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
-
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script>
-    const connection = new signalR.HubConnectionBuilder()
-        .withUrl("/chatHub")
-        .configureLogging(signalR.LogLevel.Information)
-        .build();
+    var connection = new signalR.HubConnectionBuilder().withUrl("/chatHub").build();
+    var selectedUserId = null;
+    var currentUser = '';
+
+    connection.on("ReceivePersonalMessage", function (messageContent) {
+        appendMessage(messageContent, false);
+    });
 
     connection.start().then(function () {
-        console.log("SignalR Connected!");
+        console.log("Hub'a bağlanıldı.");
+        fetchUserList();
     }).catch(function (err) {
         return console.error(err.toString());
     });
 
-    
-    $('#group-message-form').on('submit', function (e) {
+    $(document).on('click', '#userList li', function () {
+        $('#userList li').removeClass('selected');
+        $(this).addClass('selected');
+        selectedUserId = $(this).attr('data-userid');
+        var receiverUserName = $(this).text().trim();
+        $('#receiverUserName').text(receiverUserName);
+        $('#receiverUserId').val(selectedUserId);
+
+        currentUser = '';
+
+        fetchMessageHistory(currentUser, selectedUserId);
+    });
+
+    function fetchUserList() {
+        $.ajax({
+            url: '/Users/GetUserList',
+            type: 'GET',
+            success: function (data) {
+                data.forEach(function (user) {
+                    if (user.isLoggedIn) {
+                        return;
+                    }
+                    $('#userList').append('<li class="list-group-item" data-userid="' + user.id + '">' + user.name + ' ' + user.surname + '</li>');
+                });
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function fetchMessageHistory(currentUser, selectedUserId) {
+        $.ajax({
+            url: '/Messages/GetMessagesBetweenUsers',
+            type: 'GET',
+            data: {
+                userId1: currentUser,
+                userId2: selectedUserId
+            },
+            success: function (messages) {
+                messages.forEach(function (message) {
+                    
+                    var sentByMe = (message.senderUserID === currentUser);
+                    appendMessage(message.messageContent, sentByMe);
+                });
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    function appendMessage(messageContent, isSentByMe) {
+        var div = document.createElement("div");
+        var li = document.createElement("li");
+        li.textContent = messageContent;
+        li.className = "list-group-item";
+
+        if (isSentByMe) {
+            div.className = "message sent";  
+            li.style.textAlign = "right";
+        } else {
+            div.className = "message received";  
+            li.style.textAlign = "left";
+        }
+
+        div.appendChild(li);  
+        $('#messagesList').append(div);  
+        $('#messagesList').scrollTop($('#messagesList')[0].scrollHeight);
+    }
+
+    $('#messageForm').submit(function (e) {
         e.preventDefault();
-        const groupId = $('#group-id').val();
-        const messageContent = $('#group-message-input').val();
-        connection.invoke('SendMessageToGroup', groupId, messageContent);
-    });
+        if (!selectedUserId) {
+            alert("Lütfen bir alıcı seçin!");
+            return;
+        }
+        var messageContent = $('#messageContent').val();
 
-    
-    $('#personal-message-form').on('submit', function (e) {
-        e.preventDefault();
-        const receiverUserId = $('#receiver-user-id').val();
-        const messageContent = $('#personal-message-input').val();
-        connection.invoke('SendPersonalMessage', receiverUserId, messageContent);
-    });
-
-
-    connection.on('ReceiveGroupMessage', function (messageContent) {
-        
-    });
-
-    
-    connection.on('ReceivePersonalMessage', function (messageContent) {
-        
+        $.ajax({
+            url: '/Account/Loginjson',
+            type: 'GET',
+            success: function (isLoggedIn) {
+                if (isLoggedIn) {
+                    connection.invoke("SendPersonalMessage", selectedUserId, messageContent).catch(function (err) {
+                        return console.error(err.toString());
+                    });
+                    appendMessage(messageContent, true);
+                    $('#messageContent').val('');
+                } else {
+                    window.location.href = '/Account/Login';
+                }
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
     });
 </script>
-

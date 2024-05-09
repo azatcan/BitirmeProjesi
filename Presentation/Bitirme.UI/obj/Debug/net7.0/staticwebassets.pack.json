@@ -8993,12 +8993,24 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\0911e006-efa0-41fa-82cc-b36c78d66c7d.jpeg",
+      "PackagePath": "staticwebassets\\resimler\\user\\0911e006-efa0-41fa-82cc-b36c78d66c7d.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\19137697-7b7c-4099-bb61-ad52355d5b6b.jpeg",
+      "PackagePath": "staticwebassets\\resimler\\user\\19137697-7b7c-4099-bb61-ad52355d5b6b.jpeg"
+    },
+    {
       "Id": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\666fdcb8-998c-41b0-8f94-4d8cd435f43f.jpeg",
       "PackagePath": "staticwebassets\\resimler\\user\\666fdcb8-998c-41b0-8f94-4d8cd435f43f.jpeg"
     },
     {
       "Id": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\88e2135b-0a02-4457-a98d-f35ba9037f1a.jpeg",
       "PackagePath": "staticwebassets\\resimler\\user\\88e2135b-0a02-4457-a98d-f35ba9037f1a.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\a76a0942-9d75-4464-abc1-c258381ae245.jpeg",
+      "PackagePath": "staticwebassets\\resimler\\user\\a76a0942-9d75-4464-abc1-c258381ae245.jpeg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Bitirme.UI.Microsoft.AspNetCore.StaticWebAssets.props",

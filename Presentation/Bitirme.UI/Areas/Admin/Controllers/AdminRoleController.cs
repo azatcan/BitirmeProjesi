@@ -52,7 +52,7 @@ namespace Bitirme.UI.Areas.Admin.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
             }
-            return View(name);
+            return View(role);
         }
         public IActionResult Update(Guid id)
         {
@@ -116,9 +116,8 @@ namespace Bitirme.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> model)
         {
-            var user = await _userManager.GetUserAsync(User);
-            var userid = user.Id;
-            var users = _userManager.Users.FirstOrDefault(x => x.Id == userid);
+            var userid = (Guid)TempData["UserId"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userid);
             foreach (var item in model)
             {
                 if (item.Exists)

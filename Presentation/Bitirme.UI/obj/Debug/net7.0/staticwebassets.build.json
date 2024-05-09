@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6yPutqwI4sq1k/SBVvED1RK11s1tvwc9kL8aaJW8E4c=",
+  "Hash": "yGdJKplD/s0dMWL0EDtv3RD9q83R+w4F6AJ+Hbl6UJ4=",
   "Source": "Bitirme.UI",
   "BasePath": "_content/Bitirme.UI",
   "Mode": "Default",
@@ -38250,6 +38250,40 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
+      "Identity": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\0911e006-efa0-41fa-82cc-b36c78d66c7d.jpeg",
+      "SourceId": "Bitirme.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\",
+      "BasePath": "_content/Bitirme.UI",
+      "RelativePath": "resimler/user/0911e006-efa0-41fa-82cc-b36c78d66c7d.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resimler\\user\\0911e006-efa0-41fa-82cc-b36c78d66c7d.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\19137697-7b7c-4099-bb61-ad52355d5b6b.jpeg",
+      "SourceId": "Bitirme.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\",
+      "BasePath": "_content/Bitirme.UI",
+      "RelativePath": "resimler/user/19137697-7b7c-4099-bb61-ad52355d5b6b.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resimler\\user\\19137697-7b7c-4099-bb61-ad52355d5b6b.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\666fdcb8-998c-41b0-8f94-4d8cd435f43f.jpeg",
       "SourceId": "Bitirme.UI",
       "SourceType": "Discovered",
@@ -38282,6 +38316,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\resimler\\user\\88e2135b-0a02-4457-a98d-f35ba9037f1a.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\resimler\\user\\a76a0942-9d75-4464-abc1-c258381ae245.jpeg",
+      "SourceId": "Bitirme.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\azatc\\source\\repos\\BitirmeProjesii\\Presentation\\Bitirme.UI\\wwwroot\\",
+      "BasePath": "_content/Bitirme.UI",
+      "RelativePath": "resimler/user/a76a0942-9d75-4464-abc1-c258381ae245.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resimler\\user\\a76a0942-9d75-4464-abc1-c258381ae245.jpeg"
     }
   ]
 }
