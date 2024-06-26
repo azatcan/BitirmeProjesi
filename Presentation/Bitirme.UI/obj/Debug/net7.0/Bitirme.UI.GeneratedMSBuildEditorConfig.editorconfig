@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\azatc\source\repos\BitirmeProjesii\Presentation\Bitirme.UI
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Areas/Admin/Views/AdminEvents/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5FdmVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Areas/Admin/Views/AdminEvents/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5FdmVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Areas/Admin/Views/AdminGroup/AddGroup.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Hcm91cFxBZGRHcm91cC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -42,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Areas/Admin/Views/AdminRole/UserRoleList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb2xlXFVzZXJSb2xlTGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Areas/Admin/Views/AdminUserAproved/PendingApprovals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Vc2VyQXByb3ZlZFxQZW5kaW5nQXBwcm92YWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Areas/Admin/Views/Admin/Index.cshtml]
@@ -86,6 +98,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Views/Users/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Views/Users/UpdateProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcVXBkYXRlUHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/azatc/source/repos/BitirmeProjesii/Presentation/Bitirme.UI/Views/_ViewImports.cshtml]

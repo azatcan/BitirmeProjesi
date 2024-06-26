@@ -2,6 +2,7 @@
 using Bitirme.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 
 namespace Bitirme.UI.Hubs
@@ -78,20 +79,39 @@ namespace Bitirme.UI.Hubs
         public async Task SendPersonalMessage(Guid receiverUserId, string messageContent)
         {
             var senderUserId = Guid.Parse(Context.UserIdentifier);
+
             if (senderUserId != null)
             {
-                var message = new Messages
-                {
-                    SenderUserID = senderUserId,
-                    ReceiverUserID = receiverUserId,
-                    MessageContent = messageContent,
-                    SendDate = DateTime.Now
-                };
-                _context.Messages.Add(message);
-                await _context.SaveChangesAsync();
+                // Gönderen ve alıcı arasında daha önce bir mesaj alışverişi olup olmadığını kontrol ediyoruz
+                var senderSelectedReceiver = await _context.Messages
+                    .AnyAsync(m => m.SenderUserID == senderUserId && m.ReceiverUserID == receiverUserId);
 
-                await Clients.User(receiverUserId.ToString()).SendAsync("ReceivePersonalMessage", messageContent);
+                var receiverSelectedSender = await _context.Messages
+                    .AnyAsync(m => m.SenderUserID == receiverUserId && m.ReceiverUserID == senderUserId);
+
+                // Eğer sadece gönderen alıcıyı seçtiyse veya gönderen ve alıcı birbirini seçmişse mesaj gönderme işlemi gerçekleştirilir
+                if (senderSelectedReceiver || receiverSelectedSender)
+                {
+                    var message = new Messages
+                    {
+                        SenderUserID = senderUserId,
+                        ReceiverUserID = receiverUserId,
+                        MessageContent = messageContent,
+                        SendDate = DateTime.Now
+                    };
+
+                    _context.Messages.Add(message);
+                    await _context.SaveChangesAsync();
+
+                    await Clients.User(receiverUserId.ToString()).SendAsync("ReceivePersonalMessage", messageContent);
+                }
+                else
+                {
+                    // Eğer alıcı göndereni seçmemişse, mesaj gönderme işlemi gerçekleştirilmez
+                    // ve hata mesajı döndürülür.
+                }
             }
         }
+
     }
 }

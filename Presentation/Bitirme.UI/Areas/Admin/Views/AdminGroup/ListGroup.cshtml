@@ -14,7 +14,7 @@
         <th>Oluşturulma Tarihi</th>
         <th>Oluşturan</th>
         <th>Sil</th>
-        <th>Güncelleme</th>
+
     </tr>
     @foreach (var item in Model)
     {
@@ -24,8 +24,9 @@
             <td>@item.CreationDate</td>
             <td>@item.CreatorUserID</td>
             <td>@Html.ActionLink("Sil", "Delete", "AdminGroup", new { id = item.Id },new {@class="btn btn-danger",onclick="return confirm ('silmek istiyormsunuz?')"})</td>
-            <td><a class="btn btn-primary" href="/Admin/AdminGroup/Update/@item.Id">Güncelleme</a></td>
+
         </tr>
     }
 </table>
 
+<a class="btn btn-primary" href="/Admin/Admin/Index">Admin Ana Sayfa</a>

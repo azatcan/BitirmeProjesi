@@ -11,6 +11,7 @@
         <div class="col-md-4">
             <h3>Kullanıcılar</h3>
             <ul id="userList" class="list-group"></ul>
+
         </div>
         <div class="col-md-8">
             <div class="row">
@@ -35,9 +36,13 @@
                         <input type="hidden" id="receiverUserId" required readonly>
                     </form>
                 </div>
+                
             </div>
+           
         </div>
+        
     </div>
+    <a class="btn btn-primary" href="/GroupMessage/Index">Grouplara mesaj gönder</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -67,9 +72,7 @@
         $('#receiverUserName').text(receiverUserName);
         $('#receiverUserId').val(selectedUserId);
 
-        currentUser = '';
-
-        fetchMessageHistory(currentUser, selectedUserId);
+        fetchMessageHistory(selectedUserId);
     });
 
     function fetchUserList() {
@@ -90,7 +93,9 @@
         });
     }
 
-    function fetchMessageHistory(currentUser, selectedUserId) {
+    function fetchMessageHistory(selectedUserId) {
+        currentUser = selectedUserId;
+
         $.ajax({
             url: '/Messages/GetMessagesBetweenUsers',
             type: 'GET',
@@ -99,10 +104,13 @@
                 userId2: selectedUserId
             },
             success: function (messages) {
+                $('#messagesList').empty();
                 messages.forEach(function (message) {
-                    
                     var sentByMe = (message.senderUserID === currentUser);
-                    appendMessage(message.messageContent, sentByMe);
+                    // Sadece alıcı olan kullanıcının mesajlarını görüntüle
+                    if (!sentByMe) {
+                        appendMessage(message.messageContent, sentByMe);
+                    }
                 });
             },
             error: function (error) {
@@ -158,3 +166,4 @@
         });
     });
 </script>
+

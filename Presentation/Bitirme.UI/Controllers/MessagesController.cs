@@ -37,7 +37,7 @@ namespace Bitirme.UI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMessagesBetweenUsers(Guid userId1,Guid userId2)
+        public async Task<IActionResult> GetMessagesBetweenUsers(Guid userId1, Guid userId2)
         {
             var currentUser = await userManager.GetUserAsync(User);
             userId1 = currentUser.Id;
@@ -50,22 +50,20 @@ namespace Bitirme.UI.Controllers
                     .OrderBy(m => m.SendDate)
                     .ToList();
 
-                
                 var formattedMessages = messages.Select(m => new
                 {
                     Id = m.Id,
                     SenderUserID = m.SenderUserID,
-                    SenderUserName = m.SenderUser.Name, 
+                    SenderUserName = m.SenderUser.Name,
                     ReceiverUserID = m.ReceiverUserID,
-                    ReceiverUserName = m.ReceiverUser.Name, 
+                    ReceiverUserName = m.ReceiverUser.Name,
                     MessageContent = m.MessageContent,
                     SendDate = m.SendDate,
                     IsGroupMessage = m.IsGroupMessage,
                     FileID = m.FileID,
-                    
+
                 });
 
-                
                 return Json(formattedMessages);
             }
             catch (Exception ex)

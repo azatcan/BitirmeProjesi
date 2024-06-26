@@ -4,5 +4,6 @@ namespace Bitirme.Domain.Entities
 {
     public class Roles : IdentityRole<Guid>
     {
+       
     }
 }

@@ -7,9 +7,8 @@
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Group Name</th>
-                <th>Creator User ID</th>
+                <th>Creator User Name</th>
                 <th>Creation Date</th>
                 <th>Group Description</th>
                 <th>Action</th>
@@ -19,9 +18,8 @@
             @foreach (var group in Model)
             {
                 <tr>
-                    <td>@group.Id</td>
                     <td>@group.GroupName</td>
-                    <td>@group.CreatorUserID</td>
+                    <td>@(group.CreatorUser != null ? group.CreatorUser.Name : "Unknown")</td>
                     <td>@group.CreationDate</td>
                     <td>@group.GroupDescription</td>
                     <td>
@@ -38,6 +36,7 @@
 <script src="~/js/signalr/dist/browser/signalr.min.js"></script>
 
 <script>
+
     const connection = new signalR.HubConnectionBuilder()
         .withUrl("/chatHub")
         .configureLogging(signalR.LogLevel.Information)
@@ -52,8 +51,40 @@
     document.querySelectorAll('.join-group-btn').forEach(button => {
         button.addEventListener('click', async () => {
             const groupId = button.getAttribute('data-group-id');
-            await connection.invoke('JoinGroup', groupId);
+            if (button.textContent === "Join") {
+                await connection.invoke('JoinGroup', groupId);
+            } else {
+                await connection.invoke('LeaveGroup', groupId);
+            }
         });
     });
+
+    async function IsUserMemberOfGroup(groupId) {
+        const response = await fetch(`/Group/GroupMemberCheck?groupId=${groupId}`);
+        const data = await response.json();
+        return data;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll(".join-group-btn");
+
+        buttons.forEach(button => {
+            button.addEventListener("click", async () => {
+                const groupId = button.getAttribute("data-group-id");
+                const isMember = await IsUserMemberOfGroup(groupId);
+
+                if (isMember) {
+                    button.textContent = "Leave";
+                    button.classList.remove("btn-primary");
+                    button.classList.add("btn-danger");
+                } else {
+                    button.textContent = "Join";
+                    button.classList.remove("btn-danger");
+                    button.classList.add("btn-primary");
+                }
+            });
+        });
+    });
+
 </script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

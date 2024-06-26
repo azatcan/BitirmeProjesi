@@ -1,0 +1,39 @@
+﻿@using Bitirme.Domain.Entities;
+@model IEnumerable<Users>
+@{
+    ViewData["Title"] = "PendingApprovals";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Pending User Approvals</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Document</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Name @user.SurName</td>
+                <td>@user.Email</td>
+                <td>
+                    <a href="@Url.Content("~/resimler/student/" + user.StudentDocumentPath)" target="_blank">View Document</a>
+                </td>
+                <td>
+                    <form asp-action="ApproveUser" method="post">
+                        <input type="hidden" name="userId" value="@user.Id" />
+                        <button type="submit">Approve</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-primary" href="/Admin/Admin/Index">Admin Ana Sayfa</a>
+

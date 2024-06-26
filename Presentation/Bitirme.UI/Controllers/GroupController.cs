@@ -6,6 +6,7 @@ using Bitirme.UI.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata.Ecma335;
 using System.Security.Claims;
 
 namespace Bitirme.UI.Controllers
@@ -24,10 +25,33 @@ namespace Bitirme.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var result = groupsService.List();
-            return View(result);
+            var groups = await dataContext.Groups.Include(g => g.CreatorUser).ToListAsync();
+            return View(groups);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GroupMemberCheck(Guid groupId)
+        {
+            var currentUser = await userManager.GetUserAsync(User);
+            var groupMembers = dataContext.GroupMembers
+                .Where(x => x.GroupID == groupId)
+                .Select(x => new { x.UserID})
+                .ToList();
+            foreach (var item in groupMembers)
+            {
+                if (currentUser.Id == item.UserID)
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok(false);
+                }
+            }
+            return View();
+            
         }
 
         [HttpGet]

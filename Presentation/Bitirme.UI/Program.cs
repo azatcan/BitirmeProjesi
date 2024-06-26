@@ -6,6 +6,8 @@ using Bitirme.Infrastructure.Abstract;
 using Bitirme.Infrastructure.Concrete;
 using Bitirme.UI.Hubs;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -13,7 +15,7 @@ namespace Bitirme.UI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +28,7 @@ namespace Bitirme.UI
                     builder => builder
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .WithOrigins("https://localhost:7107/") 
+                        .WithOrigins("https://localhost:7107/")
                         .AllowCredentials());
             });
 
@@ -40,6 +42,8 @@ namespace Bitirme.UI
             builder.Services.AddSignalR();
 
             var app = builder.Build();
+
+           
 
             if (!app.Environment.IsDevelopment())
             {
@@ -64,7 +68,7 @@ namespace Bitirme.UI
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            
+
 
             app.MapHub<ChatHub>("/chathub");
 
@@ -91,7 +95,9 @@ namespace Bitirme.UI
                 options.User.RequireUniqueEmail = false;
 
             })
-                .AddEntityFrameworkStores<DataContext>();
+                .AddEntityFrameworkStores<DataContext>()
+                .AddRoleManager<RoleManager<Roles>>()
+                .AddRoles<Roles>(); 
         }
 
         private static void RegisterServices(WebApplicationBuilder builder)
@@ -103,5 +109,6 @@ namespace Bitirme.UI
         {
             builder.Services.AddScoped<IGroupsRepsoitory, GroupsRepository>();
         }
+    
     }
 }

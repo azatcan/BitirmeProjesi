@@ -96,10 +96,18 @@
                                         <span class="text-danger" asp-validation-for="RePassword"></span>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label>Kullanıcı Görseli</label>
-                                        <input type="file" Name="ImagePath" />
+                                    <div class="form-group">
+                                        <label for="ImagePath">Kullanıcı Görseli</label>
+                                        <input type="file" class="form-control" name="ImagePath" asp-for="ImagePath" />
+                                        <br />
+                                        <span class="text-danger" asp-validation-for="ImagePath"></span>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label for="StudentDocument">Öğrenci Belgesi</label>
+                                        <input type="file" class="form-control" name="StudentDocument" asp-for="StudentDocument" />
+                                        <br />
+                                        <span class="text-danger" asp-validation-for="StudentDocument"></span>
                                     </div>
 
                                 </div>

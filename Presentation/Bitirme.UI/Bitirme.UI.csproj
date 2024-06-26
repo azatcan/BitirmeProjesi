@@ -28,6 +28,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="wwwroot\resimler\event\" />
+    <Folder Include="wwwroot\resimler\student\" />
     <Folder Include="wwwroot\resimler\user\" />
   </ItemGroup>
 

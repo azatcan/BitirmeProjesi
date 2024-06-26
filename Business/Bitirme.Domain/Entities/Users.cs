@@ -10,6 +10,8 @@ namespace Bitirme.Domain.Entities
         public string? ImagePath { get; set; }
         public string Password { get; set; }
         public string RePassword { get; set; }
+        public string StudentDocumentPath { get; set; }
+        public bool IsApproved { get; set; } = false;
 
         [InverseProperty("SenderUser")]
         public ICollection<Messages> SentMessages { get; set; }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
+
 namespace Bitirme.Domain.Data
 {
     public class DataContext : IdentityDbContext<Users, Roles, Guid>
@@ -22,7 +23,9 @@ namespace Bitirme.Domain.Data
             .WithMany(m => m.Files)
             .HasForeignKey(f => f.MessageID);
 
-            base.OnModelCreating(builder);
+
+            base.OnModelCreating(builder);      
+
         }
 
         public DbSet<Messages> Messages { get; set; }
@@ -31,5 +34,6 @@ namespace Bitirme.Domain.Data
         public DbSet<GroupMembers> GroupMembers { get; set; }
         public DbSet<Files> Files { get; set; }
         public DbSet<Connections> Connections { get; set; }
+        public DbSet<Events> Events { get; set; }
     }
 }

@@ -1,0 +1,50 @@
+﻿@model Bitirme.UI.Models.UsersUpdateModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Güncelle</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Profil Güncelle</h2>
+        <form asp-action="UpdateProfile" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Name">Ad</label>
+                <input type="text" class="form-control" id="Name" name="Name" value="@Model.Name">
+            </div>
+            <div class="form-group">
+                <label for="SurName">Soyad</label>
+                <input type="text" class="form-control" id="SurName" name="SurName" value="@Model.SurName">
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email">
+            </div>
+            <div class="form-group">
+                <label for="UserName">Kullanıcı Adı</label>
+                <input type="text" class="form-control" id="UserName" name="UserName" value="@Model.UserName">
+            </div>
+            <div class="form-group">
+                <label for="ProfileImage">Profil Resmi</label>
+                <input type="file" class="form-control" id="ProfileImage" name="ProfileImage">
+                @if (!string.IsNullOrEmpty(Model.ExistingImagePath))
+                {
+                    <img src="~/resimler/user/@Model.ExistingImagePath" alt="Current Profile Image" class="img-thumbnail mt-2" style="width: 150px; height: 150px;">
+                }
+            </div>
+            <button type="submit" class="btn btn-primary">Güncelle</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

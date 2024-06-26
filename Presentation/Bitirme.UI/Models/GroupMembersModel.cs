@@ -8,7 +8,7 @@ namespace Bitirme.UI.Models
         public Guid UserID { get; set; }
         public Guid GroupID { get; set; }
 
-        public Users User { get; set; }
+        public UsersModel User { get; set; }
         public Groups Group { get; set; }
     }
 }
